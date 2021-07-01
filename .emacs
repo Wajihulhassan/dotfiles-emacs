@@ -4,7 +4,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 ; list the packages you want
 (setq package-list
-      '(whitespace base16-theme company))
+      '(whitespace base16-theme))
 
 ; activate all the packages
 (package-initialize)
@@ -149,14 +149,6 @@ point reaches the beginning or end of the buffer, stop there."
 ;; (define-key ac-completing-map (kbd "C-n") 'ac-next)
 ;; (define-key ac-completing-map (kbd "C-p") 'ac-previous)
 
-(require 'company)
-(add-hook 'after-init-hook 'global-company-mode)
-
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-(load "xclip-1.10")
-(require 'xclip)
-(xclip-mode 1)
-
 
 ;; nearly all of this is the default layout
 ;; Increase column width in emacs I-buffer
@@ -175,44 +167,3 @@ point reaches the beginning or end of the buffer, stop there."
 ;; themes
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'snazzy t)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:background "nil"))))
- '(company-tooltip-selection ((t (:inherit font-lock-function-name-face :background "brightblack"))))
- '(popup-tip-face ((t (:background "color-21" :foreground "white"))))
- '(region ((t (:background "brightmagenta"))))
-
-'(company-preview
-   ((t (:inherit default :foreground "darkgray" :height 110))))
- '(company-preview-common
-   ((t (:inherit default :foreground "bisque1" :distant-foreground "blue"))))
- '(company-tooltip
-   ((t (:inherit company-preview :background "lightgray" :foreground "black"))))
- '(company-tooltip-selection
-   ((t (:inherit company-preview :background "steelblue" :foreground "white"))))
-
- '(company-tooltip-common
-   ((((type x)) (:inherit company-tooltip :foreground "white" :background "olive drab"))
-    (t (:inherit company-tooltip))))
- '(company-tooltip-common-selection
-   ((((type x)) (:inherit company-tooltip-selection :background "blue"))
-    (t (:inherit company-tooltip-selection))))
-
- '(company-tooltip-annotation
-   ((t (:inherit company-tooltip :foreground "saddle brown"))))
- '(company-tooltip-annotation-selection
-   ((t (:inherit company-tooltip-selection :foreground "sandy brown"))))
- )
-(set-face-background 'mode-line "#4466aa")
-(set-face-background 'mode-line-inactive "color-22")
-(set-face-background 'fringe "#809088")
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (base16-theme auto-complete))))
