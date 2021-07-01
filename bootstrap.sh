@@ -1,7 +1,7 @@
 ########## Variables
  
-dir=~/dotfiles                    # dotfiles directory
-olddir=~/dotfiles_old             # old dotfiles backup directory
+dir=~/dotfiles-emacs                    # dotfiles directory
+olddir=~/dotfiles-emacs_old             # old dotfiles backup directory
 files=".emacs .emacs.d"        # list of files/folders to symlink in homedir
  
 ##########
@@ -19,7 +19,7 @@ echo "...done"
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
-    yes | cp -rf ~/$file ~/dotfiles_old/ && rm -R ~/$file
+    yes | cp -rf ~/$file $olddir && rm -R ~/$file
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/$file
 done
