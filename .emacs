@@ -167,3 +167,14 @@ point reaches the beginning or end of the buffer, stop there."
 ;; themes
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'snazzy t)
+(set-face-background 'mode-line "#4466aa")
+(set-face-background 'mode-line-inactive "color-22")
+(set-face-background 'fringe "#809088")
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages (quote (base16-theme auto-complete))))
+(set-face-attribute 'region nil :background "#666")
