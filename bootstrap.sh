@@ -2,7 +2,7 @@
  
 dir=~/dotfiles-emacs                    # dotfiles directory
 olddir=~/dotfiles-emacs_old             # old dotfiles backup directory
-files=".emacs .emacs.d"        # list of files/folders to symlink in homedir
+files=".emacs .emacs.d .bashrc .bash_aliases"        # list of files/folders to symlink in homedir
  
 ##########
  
@@ -23,3 +23,5 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/$file
 done
+
+source ~/.bashrc
