@@ -86,9 +86,6 @@
 
 ;; Essentials
 (menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(fringe-mode -1)
 (column-number-mode 1)
 
 ;; Put all the temporary ~ files in backup direcotory
