@@ -4,7 +4,8 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 ; list the packages you want
 (setq package-list
-      '(whitespace base16-theme))
+      '(whitespace company vscode-dark-plus-theme))
+
 
 ; activate all the packages
 (package-initialize)
@@ -50,19 +51,15 @@
 (setq comint-prompt-regexp "^[^#$%>\n]*[#$%>] *")
 (setq scroll-conservatively 101)
 
-; for git-aware prompt colors
-(add-hook 'shell-mode-hook
-      (lambda ()
-        (face-remap-set-base 'comint-highlight-prompt :inherit nil)))
-
 ; it's easier to add a line than to remove
 (setq require-final-newline nil)
 
-; for colors, but mostly running Git in shell
-(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-
 ; being compatible with modern editors
 (setq mode-require-final-newline nil)
+
+(define-key global-map (kbd "C-o") 'universal-argument)
+(define-key universal-argument-map "\C-o" 'universal-argument-more)
+(define-key universal-argument-map "\C-u" nil)
 
 (global-set-key (kbd "C-u") 'save-buffer)
 (global-set-key (kbd "C-l") 'find-file)
@@ -140,15 +137,22 @@ point reaches the beginning or end of the buffer, stop there."
                 'my/smarter-move-beginning-of-line)
 
 (require 'whitespace)
-(setq whitespace-style '(face empty tabs lines-tail trailing))
-;; (require 'auto-complete)
-;; (ac-config-default)
-;; ;; Activate auto-complete for latex modes (AUCTeX or Emacs' builtin one).
-;; (add-to-list 'ac-modes 'latex-mode)
-;; (global-auto-complete-mode t)
-;; (define-key ac-completing-map (kbd "C-n") 'ac-next)
-;; (define-key ac-completing-map (kbd "C-p") 'ac-previous)
 
+(setq whitespace-style '(face empty tabs lines-tail trailing))
+
+(require 'company)
+
+(add-hook 'after-init-hook 'global-company-mode)
+
+(add-hook 'emacs-startup-hook
+  (lambda ()
+    (load-theme 'vscode-dark-plus t)
+    ))
+
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+(load "xclip-1.10")
+(require 'xclip)
+(xclip-mode 1)
 
 ;; nearly all of this is the default layout
 ;; Increase column width in emacs I-buffer
@@ -164,17 +168,16 @@ point reaches the beginning or end of the buffer, stop there."
               (name 16 -1)
               " " filename)))
 
-;; themes
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'snazzy t)
-(set-face-background 'mode-line "#4466aa")
-(set-face-background 'mode-line-inactive "color-22")
-(set-face-background 'fringe "#809088")
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (base16-theme auto-complete))))
-(set-face-attribute 'region nil :background "#666")
+ '(custom-safe-themes
+   '("6c4c97a17fc7b6c8127df77252b2d694b74e917bab167e7d3b53c769a6abb6d6" "efc8341e278323cd87eda7d7a3736c8837b10ebfaa0d2be978820378d3d1b2e2" default)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-blue ((t (:background "cyan" :foreground "cyan")))))
